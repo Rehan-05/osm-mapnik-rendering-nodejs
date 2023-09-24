@@ -43,11 +43,7 @@ console.log('Executing PostgreSQL query:', query);
 
   //pool.query(query, (error, result) => {
 
-  if (error) {
-    console.error('Error retrieving data from PostgreSQL:', error);
-    res.status(500).send('Error retrieving data from PostgreSQL');
-    return;
-  }
+
 
    const map = new mapnik.Map(800, 600);
     try {

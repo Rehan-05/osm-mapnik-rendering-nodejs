@@ -127,7 +127,6 @@ app.get('/render', (req, res) => {
       res.send(image.encodeSync('png'));
     });
   });
-
 });
 
 app.listen(3003, () => {
