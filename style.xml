@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+  <!-- Define the style for the layer -->
+  <Style name="blue_style">
+    <Rule>
+      <PolygonSymbolizer fill="#0000FF" />
+      <LineSymbolizer stroke="#000000" stroke-width="1" />
+    </Rule>
+  </Style>
+
+  <!-- Create a layer and apply the style -->
+  <Layer name="blue_layer" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>blue_style</StyleName>
+    <Datasource>
+      <Parameter name="type">csv</Parameter>
+      <Parameter name="inline">
+        wkt,Name
+        POLYGON((-180 -90,-180 90,180 90,180 -90,-180 -90)),Blue Rectangle
+      </Parameter>
+    </Datasource>
+  </Layer>
+</Map>
+
