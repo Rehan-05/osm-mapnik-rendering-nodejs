@@ -2,11 +2,11 @@
   "name": "my_mapnik_project",
   "version": "1.0.0",
   "description": "",
-  "main": "render.js",
+  "main": "rendernew2.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon render.js",
-    "dev": "nodemon render.js"
+    "start": "nodemon rendernew2.js",
+    "dev": "nodemon rendernew2.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,9 @@
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "mapnik": "^4.5.9",
-    "pg": "^8.11.3"
+    "mapnik-pool": "^0.1.3",
+    "pg": "^8.11.3",
+    "url": "^0.11.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

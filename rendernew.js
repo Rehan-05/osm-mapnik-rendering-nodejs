@@ -4,10 +4,12 @@ const app = express();
 const { Pool } = require('pg'); // PostgreSQL client library
 const path = require('path'); // Import the 'path' module
 const fs = require('fs');
-//mapnik.register_default_fonts();
+
+
+mapnik.register_default_fonts();
 mapnik.register_default_input_plugins();
 
-//const styleXMLString  = fs.readFileSync('./style.xml', 'utf8');
+const styleXMLString  = fs.readFileSync('./style.xml', 'utf8');
 
 
 // Configure PostgreSQL connection
@@ -15,7 +17,7 @@ const pool = new Pool({
   user: 'osmrehan05',
   host: 'localhost',
   database: 'osm',
-  password: 'pakistan12@',
+  password: 'Pakistan12@',
   port: 5432, // Default PostgreSQL port
 });
 
@@ -32,25 +34,24 @@ pool.connect((connectError, client, release) => {
 
 
 // Load Mapnik XML style
-const map = new mapnik.Map(800, 600);
-const styleXMLString  = fs.readFileSync('./style.xml', 'utf8'); 
-map.fromStringSync(styleXMLString);
+//const map = new mapnik.Map(800, 600);
+//const styleXMLString  = fs.readFileSync('./style.xml', 'utf8'); 
+//map.fromStringSync(styleXMLString);
 
 
 app.get('/render', (req, res) => {
 const query = 'SELECT * FROM morocco_roads';
 console.log('Executing PostgreSQL query:', query);
 
-  //pool.query(query, (error, result) => {
-
-
+  pool.query(query, (error, result) => {
 
    const map = new mapnik.Map(800, 600);
     try {
       map.fromStringSync(styleXMLString);
     } catch (parseError) {
      console.error('Error parsing Mapnik stylesheet:', parseError);
-      res.status(500).send('Error parsing Mapnik stylesheet');
+      res.status(500).send('Error parsing Mapnik stylesheet,`${parseError}`');
+      res.status(500).send(parseError);
       return;
     }  
 
@@ -63,7 +64,7 @@ console.log('Executing PostgreSQL query:', query);
       dbname: 'osm',
       table: 'morocco_roads',
       user: 'osmrehan05',
-      password: 'pakistan12@',
+      password: 'Pakistan12@',
     });
     layer.styles = [styleXMLString]; // Replace with the appropriate style name from your Mapnik XML
 
@@ -82,7 +83,7 @@ console.log('Executing PostgreSQL query:', query);
       res.send(image.encodeSync('png'));
     });
   });
-
+});
 
 app.listen(3003, () => {
   console.log('Server is running on port 3003');
